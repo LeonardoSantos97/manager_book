@@ -7,8 +7,11 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.leoanrdo.manager_book.domain.Admin;
+import com.leoanrdo.manager_book.domain.Pessoa;
 import com.leoanrdo.manager_book.domain.dtos.AdminDTO;
 import com.leoanrdo.manager_book.repositories.AdminRepository;
+import com.leoanrdo.manager_book.repositories.PessoaRepository;
+import com.leoanrdo.manager_book.services.exceptions.DataIntegrityViolationException;
 import com.leoanrdo.manager_book.services.exceptions.ObjectnotFoundExceptions;
 
 import javassist.tools.rmi.ObjectNotFoundException;
@@ -19,6 +22,9 @@ public class AdminService {
 	
 	@Autowired
 	private AdminRepository repository;
+	
+	@Autowired
+	private PessoaRepository pessoaRepository;
 	
 	public Admin findById(Integer id) {
 		Optional<Admin> obj = repository.findById(id);
@@ -31,7 +37,15 @@ public class AdminService {
 
 	public Admin create(AdminDTO objDTO) {
 		objDTO.setId(null);
+		validaPorUsuario(objDTO);
 		Admin newObj = new Admin(objDTO);
 		return repository.save(newObj);
+	}
+
+	private void validaPorUsuario(AdminDTO objDTO) {
+		Optional<Pessoa> obj = pessoaRepository.findByUsuario(objDTO.getUsuario()); 
+		if(obj.isPresent() && obj.get().getId() != objDTO.getId()) {
+			throw new DataIntegrityViolationException("Usuário já cadastrado!");
+		}
 	}
 }
