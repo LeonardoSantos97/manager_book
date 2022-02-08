@@ -8,6 +8,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.leoanrdo.manager_book.domain.Admin;
+import com.leoanrdo.manager_book.domain.dtos.AdminDTO;
 import com.leoanrdo.manager_book.services.AdminService;
 
 @RestController
@@ -18,8 +19,8 @@ public class AdminResource {
 	private AdminService service;
 	
 	@GetMapping(value = "/{id}")
-	public ResponseEntity<Admin> findById(@PathVariable Integer id){
+	public ResponseEntity<AdminDTO> findById(@PathVariable Integer id){
 		Admin obj = service.findById(id);
-		return ResponseEntity.ok().body(obj);
+		return ResponseEntity.ok().body(new AdminDTO(obj));
 	}
 }
