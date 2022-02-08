@@ -6,6 +6,8 @@ import java.util.HashSet;
 import java.util.Set;
 import java.util.stream.Collectors;
 
+import javax.validation.constraints.NotNull;
+
 import com.fasterxml.jackson.annotation.JsonFormat;
 import com.leoanrdo.manager_book.domain.Admin;
 import com.leoanrdo.manager_book.domain.enums.Perfil;
@@ -15,8 +17,11 @@ public class AdminDTO implements Serializable{
 	private static final long serialVersionUID = 1L;
 
 	protected Integer id;
+	@NotNull(message = "O campo NOME é requerido")
 	protected String nome;
+	@NotNull(message = "O campo USUÁRIO é requerido")
 	protected String usuario;
+	@NotNull(message = "O campo SENHA é requerido")
 	protected String senha;
 	protected Set<Integer> perfis = new HashSet<>();
 	
