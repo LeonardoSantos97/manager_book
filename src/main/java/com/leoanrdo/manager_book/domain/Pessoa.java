@@ -1,25 +1,48 @@
 package com.leoanrdo.manager_book.domain;
 
+import java.io.Serializable;
 import java.time.LocalDate;
 import java.util.HashSet;
 import java.util.Objects;
 import java.util.Set;
 import java.util.stream.Collectors;
 
+import javax.persistence.CollectionTable;
+import javax.persistence.Column;
+import javax.persistence.ElementCollection;
+import javax.persistence.Entity;
+import javax.persistence.FetchType;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+
+import com.fasterxml.jackson.annotation.JsonFormat;
 import com.leoanrdo.manager_book.domain.enums.Perfil;
 
-public abstract class Pessoa {
+@Entity
+public abstract class Pessoa implements Serializable{
 
+	private static final long serialVersionUID = 1L;
+	
+	@Id
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	protected Integer id;
 	protected String nome;
+	
+	@Column(unique = true)
 	protected String usuario;
 	protected String senha;
+	
+	@ElementCollection(fetch = FetchType.EAGER)
+	@CollectionTable(name = "perfis")
 	protected Set<Integer> perfis = new HashSet<>();
+	
+	@JsonFormat(pattern = "dd/mm/yyyy")
 	protected LocalDate dataCriacao = LocalDate.now();
 	
 	public Pessoa() {
 		super();
-		addPerfis(Perfil.CLIENTE);
+		addPerfil(Perfil.CLIENTE);
 	}
 
 	public Pessoa(Integer id, String nome, String usuario, String senha) {
@@ -28,7 +51,7 @@ public abstract class Pessoa {
 		this.nome = nome;
 		this.usuario = usuario;
 		this.senha = senha;
-		addPerfis(Perfil.CLIENTE);
+		addPerfil(Perfil.CLIENTE);
 	}
 
 	public Integer getId() {
@@ -67,7 +90,7 @@ public abstract class Pessoa {
 		return perfis.stream().map(x -> Perfil.toEnum(x)).collect(Collectors.toSet());
 	}
 
-	public void addPerfis(Perfil perfil) {
+	public void addPerfil(Perfil perfil) {
 		this.perfis.add(perfil.getId());
 	}
 

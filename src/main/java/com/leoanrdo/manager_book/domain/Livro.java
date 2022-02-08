@@ -1,19 +1,45 @@
 package com.leoanrdo.manager_book.domain;
 
+import java.io.Serializable;
 import java.time.LocalDate;
 import java.util.Objects;
 
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
+
+import org.hibernate.annotations.ManyToAny;
 import org.hibernate.type.LocalDateTimeType;
 
-public class Livro {
+import com.fasterxml.jackson.annotation.JsonFormat;
+
+@Entity
+public class Livro implements Serializable{
 	
+	
+	private static final long serialVersionUID = 1L;
+	
+	@Id
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Integer id;
 	private String titulo;
 	private String autor;
+	
+	@JsonFormat(pattern = "dd/mm/yyyy")
 	private LocalDate dataCriacao = LocalDate.now();
+	
+	@JsonFormat(pattern = "dd/mm/yyyy")
 	private LocalDate dataExclusao;
 	
+	@ManyToOne
+	@JoinColumn(name = "admin_id")
 	private Admin admin;
+	
+	@ManyToOne
+	@JoinColumn(name = "cliente_id")
 	private Cliente cliente;
 	public Livro() {
 		super();
