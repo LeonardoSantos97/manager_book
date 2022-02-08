@@ -1,5 +1,6 @@
 package com.leoanrdo.manager_book.services;
 
+import java.util.List;
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -21,5 +22,9 @@ public class AdminService {
 	public Admin findById(Integer id) {
 		Optional<Admin> obj = repository.findById(id);
 		return obj.orElseThrow(() -> new ObjectnotFoundExceptions("Não encontrado! ID: " + id));
+	}
+
+	public List<Admin> findAll() {
+		return repository.findAll();
 	}
 }
