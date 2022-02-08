@@ -24,7 +24,6 @@ public class AdminDTO implements Serializable{
 	@NotNull(message = "O campo SENHA é requerido")
 	protected String senha;
 	protected Set<Integer> perfis = new HashSet<>();
-	
 	@JsonFormat(pattern = "dd/mm/yyyy")
 	protected LocalDate dataCriacao = LocalDate.now();
 
