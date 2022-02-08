@@ -25,6 +25,7 @@ public class AdminDTO implements Serializable{
 
 	public AdminDTO() {
 		super();
+		addPerfil(Perfil.CLIENTE);
 	}
 
 	public AdminDTO(Admin obj) {

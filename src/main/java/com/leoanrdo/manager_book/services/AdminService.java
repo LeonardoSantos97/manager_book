@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.leoanrdo.manager_book.domain.Admin;
+import com.leoanrdo.manager_book.domain.dtos.AdminDTO;
 import com.leoanrdo.manager_book.repositories.AdminRepository;
 import com.leoanrdo.manager_book.services.exceptions.ObjectnotFoundExceptions;
 
@@ -26,5 +27,11 @@ public class AdminService {
 
 	public List<Admin> findAll() {
 		return repository.findAll();
+	}
+
+	public Admin create(AdminDTO objDTO) {
+		objDTO.setId(null);
+		Admin newObj = new Admin(objDTO);
+		return repository.save(newObj);
 	}
 }
