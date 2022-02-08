@@ -3,6 +3,8 @@ package com.leoanrdo.manager_book.services;
 import java.util.List;
 import java.util.Optional;
 
+import javax.validation.Valid;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -41,6 +43,14 @@ public class AdminService {
 		Admin newObj = new Admin(objDTO);
 		return repository.save(newObj);
 	}
+	
+	public Admin update(Integer id, @Valid AdminDTO objDTO) {
+		objDTO.setId(id);
+		Admin oldObj =  findById(id);
+		validaPorUsuario(objDTO);
+		oldObj = new Admin(objDTO);
+		return repository.save(oldObj);
+	}
 
 	private void validaPorUsuario(AdminDTO objDTO) {
 		Optional<Pessoa> obj = pessoaRepository.findByUsuario(objDTO.getUsuario()); 
@@ -48,4 +58,6 @@ public class AdminService {
 			throw new DataIntegrityViolationException("Usuário já cadastrado!");
 		}
 	}
+
+	
 }
