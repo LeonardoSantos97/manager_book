@@ -7,6 +7,9 @@ import org.springframework.stereotype.Service;
 
 import com.leoanrdo.manager_book.domain.Admin;
 import com.leoanrdo.manager_book.repositories.AdminRepository;
+import com.leoanrdo.manager_book.services.exceptions.ObjectnotFoundExceptions;
+
+import javassist.tools.rmi.ObjectNotFoundException;
 
 @Service
 public class AdminService {
@@ -17,6 +20,6 @@ public class AdminService {
 	
 	public Admin findById(Integer id) {
 		Optional<Admin> obj = repository.findById(id);
-		return obj.orElse(null);
+		return obj.orElseThrow(() -> new ObjectnotFoundExceptions("Não encontrado! ID: " + id));
 	}
 }
