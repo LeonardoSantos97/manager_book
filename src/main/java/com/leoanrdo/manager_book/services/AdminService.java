@@ -6,6 +6,7 @@ import java.util.Optional;
 import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import com.leoanrdo.manager_book.domain.Admin;
@@ -24,6 +25,9 @@ public class AdminService {
 
 	@Autowired
 	private PessoaRepository pessoaRepository;
+	
+	@Autowired
+	private BCryptPasswordEncoder encoder;
 
 	public Admin findById(Integer id) {
 		Optional<Admin> obj = repository.findById(id);
@@ -36,6 +40,7 @@ public class AdminService {
 
 	public Admin create(AdminDTO objDTO) {
 		objDTO.setId(null);
+		objDTO.setSenha(encoder.encode(objDTO.getSenha()));
 		validaPorUsuario(objDTO);
 		Admin newObj = new Admin(objDTO);
 		return repository.save(newObj);
