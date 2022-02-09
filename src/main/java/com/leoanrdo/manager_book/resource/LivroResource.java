@@ -1,5 +1,8 @@
 package com.leoanrdo.manager_book.resource;
 
+import java.util.List;
+import java.util.stream.Collectors;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -24,5 +27,10 @@ public class LivroResource {
 		return ResponseEntity.ok().body(new LivrosDTO(obj));
 	}
 	
-	
+	@GetMapping
+	public ResponseEntity<List<LivrosDTO>> findAll(){
+		List<Livro> list = service.findAll();
+		List<LivrosDTO> listDTO = list.stream().map(obj -> new LivrosDTO(obj)).collect(Collectors.toList());
+		return ResponseEntity.ok().body(listDTO);
+	}
 }

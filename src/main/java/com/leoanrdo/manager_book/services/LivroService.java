@@ -1,5 +1,6 @@
 package com.leoanrdo.manager_book.services;
 
+import java.util.List;
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -18,6 +19,10 @@ public class LivroService {
 	public Livro findById(Integer id) {
 		Optional<Livro> obj = repository.findById(id);
 		return obj.orElseThrow(() -> new ObjectnotFoundExceptions("Objeto não encontrado ID: " + id));
+	}
+
+	public List<Livro> findAll() {
+		return repository.findAll();
 	}
 
 }
