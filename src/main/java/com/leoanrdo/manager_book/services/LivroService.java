@@ -41,6 +41,12 @@ public class LivroService {
 		return repository.save(newLivro(objDTO));
 	}
 
+	public Livro update(Integer id, @Valid LivrosDTO objDTO) {
+		objDTO.setId(id);
+		Livro oldObj = findById(id);
+		oldObj = newLivro(objDTO);
+		return repository.save(oldObj);
+	}
 	
 	private Livro newLivro(LivrosDTO obj) {
 		Admin admin = adminService.findById(obj.getAdmin());
@@ -57,6 +63,8 @@ public class LivroService {
 		return livro;
 		
 	}
+
+	
 	
 	
 }
