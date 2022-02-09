@@ -6,6 +6,7 @@ import java.time.LocalDate;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.validation.constraints.NotNull;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
 import com.leoanrdo.manager_book.domain.Livro;
@@ -16,7 +17,10 @@ public class LivrosDTO implements Serializable{
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Integer id;
+	
+	@NotNull(message = "O campo TITULO é requerido")
 	private String titulo;
+	@NotNull(message = "O campo AUTOR é requerido")
 	private String autor;
 
 	@JsonFormat(pattern = "dd/mm/yyyy")
