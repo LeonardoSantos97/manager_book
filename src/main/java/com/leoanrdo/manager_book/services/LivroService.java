@@ -15,8 +15,6 @@ import com.leoanrdo.manager_book.domain.dtos.LivrosDTO;
 import com.leoanrdo.manager_book.repositories.LivroRepository;
 import com.leoanrdo.manager_book.services.exceptions.ObjectnotFoundExceptions;
 
-import ch.qos.logback.core.net.server.Client;
-
 @Service
 public class LivroService {
 	

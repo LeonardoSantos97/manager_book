@@ -49,6 +49,11 @@ public class AdminService {
 	public Admin update(Integer id, @Valid AdminDTO objDTO) {
 		objDTO.setId(id);
 		Admin oldObj = findById(id);
+		
+		if(!objDTO.getSenha().equals(oldObj.getSenha())) {
+			objDTO.setSenha(encoder.encode(objDTO.getSenha()));
+		}
+		
 		validaPorUsuario(objDTO);
 		oldObj = new Admin(objDTO);
 		return repository.save(oldObj);

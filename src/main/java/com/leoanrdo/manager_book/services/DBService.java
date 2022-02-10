@@ -10,17 +10,14 @@ import com.leoanrdo.manager_book.domain.Admin;
 import com.leoanrdo.manager_book.domain.Cliente;
 import com.leoanrdo.manager_book.domain.Livro;
 import com.leoanrdo.manager_book.domain.enums.Perfil;
-import com.leoanrdo.manager_book.repositories.AdminRepository;
-import com.leoanrdo.manager_book.repositories.ClienteRepository;
 import com.leoanrdo.manager_book.repositories.LivroRepository;
+import com.leoanrdo.manager_book.repositories.PessoaRepository;
 
 @Service
 public class DBService {
 	
 	@Autowired
-	private AdminRepository adminRepository;
-	@Autowired
-	private ClienteRepository clienteRepository;
+	private PessoaRepository pessoaRepository;
 	@Autowired
 	private LivroRepository livroRepository;
 	@Autowired
@@ -41,10 +38,12 @@ public class DBService {
 		Livro liv3 = new Livro(null, "O Terceiro Livro", "Carlos Autor", adm2, cli3);
 		
 		
-		adminRepository.saveAll(Arrays.asList(adm1));
-		clienteRepository.saveAll(Arrays.asList(cli1));
-		livroRepository.saveAll(Arrays.asList(liv1));
+//		adminRepository.saveAll(Arrays.asList(adm1));
+//		clienteRepository.saveAll(Arrays.asList(cli1));
+//		livroRepository.saveAll(Arrays.asList(liv1));
+		pessoaRepository.saveAll(Arrays.asList(adm1, adm2, adm3, cli1, cli2, cli3));
+		livroRepository.saveAll(Arrays.asList(liv1, liv2, liv3));
 	}
-	
+
 	
 }
