@@ -47,16 +47,16 @@ public class LivroService {
 	}
 	
 	private Livro newLivro(LivrosDTO obj) {
-//		Admin admin = adminService.findById(obj.getAdmin());
-//		Cliente cliente = clienteService.findById(obj.getCliente());
+		Admin admin = adminService.findById(obj.getAdmin());
+		Cliente cliente = clienteService.findById(obj.getCliente());
 		
 		Livro livro = new Livro();
 		if (obj.getId() != null) {
 			livro.setId(obj.getId());
 		}
 		
-//		livro.setAdmin(admin);
-//		livro.setCliente(cliente);
+		livro.setAdmin(admin);
+		livro.setCliente(cliente);
 		livro.setTitulo(obj.getTitulo());
 		return livro;
 		

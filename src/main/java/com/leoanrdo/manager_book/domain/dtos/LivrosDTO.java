@@ -28,11 +28,11 @@ public class LivrosDTO implements Serializable{
 	@JsonFormat(pattern = "dd/mm/yyyy")
 	private LocalDate dataExclusao;
 
-//	private Integer admin;
-//	private Integer cliente;
-//
-//	private String nomeAdmin;
-//	private String nomeCliente;
+	private Integer admin;
+	private Integer cliente;
+
+	private String nomeAdmin;
+	private String nomeCliente;
 
 	public LivrosDTO() {
 		super();
@@ -91,36 +91,36 @@ public class LivrosDTO implements Serializable{
 		this.dataExclusao = dataExclusao;
 	}
 
-//	public Integer getAdmin() {
-//		return admin;
-//	}
+	public Integer getAdmin() {
+		return admin;
+	}
 
-//	public void setAdmin(Integer admin) {
-//		this.admin = admin;
-//	}
-//
-//	public Integer getCliente() {
-//		return cliente;
-//	}
-//
-//	public void setCliente(Integer cliente) {
-//		this.cliente = cliente;
-//	}
-//
-//	public String getNomeAdmin() {
-//		return nomeAdmin;
-//	}
-//
-//	public void setNomeAdmin(String nomeAdmin) {
-//		this.nomeAdmin = nomeAdmin;
-//	}
-//
-//	public String getNomeCliente() {
-//		return nomeCliente;
-//	}
-//
-//	public void setNomeCliente(String nomeCliente) {
-//		this.nomeCliente = nomeCliente;
-//	}
+	public void setAdmin(Integer admin) {
+		this.admin = admin;
+	}
+
+	public Integer getCliente() {
+		return cliente;
+	}
+
+	public void setCliente(Integer cliente) {
+		this.cliente = cliente;
+	}
+
+	public String getNomeAdmin() {
+		return nomeAdmin;
+	}
+
+	public void setNomeAdmin(String nomeAdmin) {
+		this.nomeAdmin = nomeAdmin;
+	}
+
+	public String getNomeCliente() {
+		return nomeCliente;
+	}
+
+	public void setNomeCliente(String nomeCliente) {
+		this.nomeCliente = nomeCliente;
+	}
 
 }

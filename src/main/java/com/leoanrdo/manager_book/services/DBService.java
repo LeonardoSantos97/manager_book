@@ -33,12 +33,12 @@ public class DBService {
 		Cliente cli2 = new Cliente(null, "Maria", "maria", encoder.encode("123"));
 		Cliente cli3 = new Cliente(null, "Carlos", "carlos",encoder.encode("123"));		
 		
-//		Livro liv1 = new Livro(null, "O Primeiro Livro", "Joao Autor", adm1, cli1);
-//		Livro liv2 = new Livro(null, "O Segundo Livro", "Maria Autora", adm2, cli2);
-//		Livro liv3 = new Livro(null, "O Terceiro Livro", "Carlos Autor", adm2, cli3);
-		Livro liv1 = new Livro(null, "O Primeiro Livro", "Joao Autor");
-		Livro liv2 = new Livro(null, "O Segundo Livro", "Maria Autora" );
-		Livro liv3 = new Livro(null, "O Terceiro Livro", "Carlos Autor");
+		Livro liv1 = new Livro(null, "O Primeiro Livro", "Joao Autor", adm1, cli1);
+		Livro liv2 = new Livro(null, "O Segundo Livro", "Maria Autora", adm2, cli2);
+		Livro liv3 = new Livro(null, "O Terceiro Livro", "Carlos Autor", adm2, cli3);
+//		Livro liv1 = new Livro(null, "O Primeiro Livro", "Joao Autor");
+//		Livro liv2 = new Livro(null, "O Segundo Livro", "Maria Autora" );
+//		Livro liv3 = new Livro(null, "O Terceiro Livro", "Carlos Autor");
 		
 		
 //		adminRepository.saveAll(Arrays.asList(adm1));

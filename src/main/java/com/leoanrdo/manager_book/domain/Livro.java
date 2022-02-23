@@ -31,24 +31,24 @@ public class Livro implements Serializable{
 	@JsonFormat(pattern = "dd/mm/yyyy")
 	private LocalDate dataExclusao;
 	
-//	@ManyToOne
-//	@JoinColumn(name = "admin_id")
-//	private Admin admin;
-//	
-//	@ManyToOne
-//	@JoinColumn(name = "cliente_id")
-//	private Cliente cliente;
+	@ManyToOne
+	@JoinColumn(name = "admin_id")
+	private Admin admin;
+	
+	@ManyToOne
+	@JoinColumn(name = "cliente_id")
+	private Cliente cliente;
 	public Livro() {
 		super();
 	}
-//	public Livro(Integer id, String titulo, String autor, Admin admin, Cliente cliente) {
-		public Livro(Integer id, String titulo, String autor) {
+	public Livro(Integer id, String titulo, String autor, Admin admin, Cliente cliente) {
+//		public Livro(Integer id, String titulo, String autor) {
 		super();
 		this.id = id;
 		this.titulo = titulo;
 		this.autor = autor;
-//		this.admin = admin;
-//		this.cliente = cliente;
+		this.admin = admin;
+		this.cliente = cliente;
 	}
 	public Integer getId() {
 		return id;
@@ -80,18 +80,18 @@ public class Livro implements Serializable{
 	public void setDataExclusao(LocalDate dataExclusao) {
 		this.dataExclusao = dataExclusao;
 	}
-//	public Admin getAdmin() {
-//		return admin;
-//	}
-//	public void setAdmin(Admin admin) {
-//		this.admin = admin;
-//	}
-//	public Cliente getCliente() {
-//		return cliente;
-//	}
-//	public void setCliente(Cliente cliente) {
-//		this.cliente = cliente;
-//	}
+	public Admin getAdmin() {
+		return admin;
+	}
+	public void setAdmin(Admin admin) {
+		this.admin = admin;
+	}
+	public Cliente getCliente() {
+		return cliente;
+	}
+	public void setCliente(Cliente cliente) {
+		this.cliente = cliente;
+	}
 	@Override
 	public int hashCode() {
 		return Objects.hash(id);
